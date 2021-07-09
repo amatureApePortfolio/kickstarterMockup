@@ -75,7 +75,7 @@ contract Campaign {
     require(request.approvalCount > (approversCount / 2));
     require(!requests[index].complete);
 
-    requests.recipient.transfer(request.value);
+    request.recipient.transfer(request.value);
     requests[index].complete = true;
   }
 
