@@ -42,7 +42,7 @@ class ContributeForm extends Component {
             value={this.state.value}
             onChange={event => this.setState({ value: event.target.value })}
             label="ether"
-            labePosition="right"
+            labelPosition="right"
           />
         </Form.Field>
         <Message error header="Something went wrong!" content={this.state.errorMessage} />
