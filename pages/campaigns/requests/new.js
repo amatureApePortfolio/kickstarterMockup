@@ -18,10 +18,29 @@ class RequestNew extends Component {
     return { address };
   }
 
+  onSubmit = async event => {
+    event.preventDefault();
+
+    const campaign = Campaign(this.props.address);
+    const { description, value, recipient } = this.state;
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await campaign.methods.createRequest(
+        description,
+        web3.utils.toWei(value, 'ether'),
+        recipient
+      ).send({ from: accounts[0] });
+    } catch (err) {
+
+    }
+  };
+
   render() {
     return (
       <Layout>
-        <Form>
+        <h3>Create a Request</h3>
+        <Form onSubmit={this.onSubmit}>
           <Form.Field>
             <label>Description</label>
             <Input
@@ -42,7 +61,7 @@ class RequestNew extends Component {
             <label>Recipient</label>
             <Input
               value={this.state.receipient}
-              onChange={event =>  this.setState({ recipient: this.target.value })}
+              onChange={event =>  this.setState({ recipient: event.target.value })}
             />
           </Form.Field>
 
