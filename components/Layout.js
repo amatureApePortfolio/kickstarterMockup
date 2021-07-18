@@ -12,7 +12,6 @@ const Layout = (props) => {
 
       <Header />
       {props.children}
-      <h1>FOOTER</h1>
     </Container>
   )
 }
